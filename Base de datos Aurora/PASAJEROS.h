@@ -15,19 +15,26 @@ namespace Base_de_datos_Aurora {
     using namespace System::Drawing;
     using namespace MySql::Data::MySqlClient;
 
+    // Definición de la clase `PASAJEROS`, que hereda de `System::Windows::Forms::Form`
+// Esta clase representa un formulario de Windows Forms en .NET
     public ref class PASAJEROS : public System::Windows::Forms::Form
     {
     public:
+        // Constructor de la clase `PASAJEROS`
         PASAJEROS(void)
         {
+            // Llamada al método para inicializar los componentes del formulario
             InitializeComponent();
         }
 
     protected:
+        // Destructor de la clase `PASAJEROS`
         ~PASAJEROS()
         {
+            // Si hay componentes asignados
             if (components)
             {
+                // Liberar la memoria de los componentes
                 delete components;
             }
         }
@@ -49,12 +56,18 @@ namespace Base_de_datos_Aurora {
     private: System::Windows::Forms::Button^ buttonLimpiar;
 
     private:
+        // Declaración de un contenedor para los componentes del formulario
         System::ComponentModel::Container^ components;
+   
+        // Declaración de botones adicionales para el formulario
     private: System::Windows::Forms::Button^ button_otro;
     private: System::Windows::Forms::Button^ otro_boton;
     private: System::Windows::Forms::Button^ next_otros;
     private: System::Windows::Forms::Button^ button_gogo;
     private: System::Windows::Forms::Button^ botonn_nexs;
+           
+      // Cadena de conexión para la base de datos
+     // Esta cadena se utiliza para establecer la conexión con la base de datos MySQL
            String^ connectionString = "server=127.0.0.1;user id=jose;password=123456789;database=aeropuerto_aurora;";
 
 #pragma region Windows Form Designer generated code
@@ -346,63 +359,87 @@ namespace Base_de_datos_Aurora {
 
         }
 #pragma endregion
-
+        // Declaración de métodos privados que manejan los eventos del formulario y sus controles
+        // Método que se ejecuta cuando el formulario 'PASAJEROS' se carga
     private: System::Void PASAJEROS_Load(System::Object^ sender, System::EventArgs^ e) {
     }
-
+           // Método que se ejecuta cuando se hace clic en el botón 'Crear'
     private: System::Void buttonCrear_Click(System::Object^ sender, System::EventArgs^ e) {
+        // Llama al método que maneja la creación de un pasajero
         crear_pasajero();
     }
-
+           // Método que se ejecuta cuando se hace clic en el botón 'Leer'
     private: System::Void buttonLeer_Click(System::Object^ sender, System::EventArgs^ e) {
+        // Llama al método que maneja la lectura de un pasajero
         leer_pasajero();
     }
-
+           // Método que se ejecuta cuando se hace clic en el botón 'Modificar'
     private: System::Void buttonModificar_Click(System::Object^ sender, System::EventArgs^ e) {
+        // Llama al método que maneja la modificación de un pasajero
         modificar_pasajero();
     }
-
+           // Método que se ejecuta cuando se hace clic en el botón 'Borrar'
     private: System::Void buttonBorrar_Click(System::Object^ sender, System::EventArgs^ e) {
+        // Llama al método que maneja la eliminación de un pasajero
         borrar_pasajero();
     }
-
+           // Método que se ejecuta cuando se hace clic en el botón 'Limpiar'
     private: System::Void buttonLimpiar_Click(System::Object^ sender, System::EventArgs^ e) {
+        // Llama al método que maneja la limpieza de los campos del formulario
         limpiar_campos();
     }
-
+           // Método privado para crear un nuevo pasajero en la base de datos
     private: void crear_pasajero() {
+        // Recupera los valores de los campos de texto del formulario y los almacena en variables locales
         String^ nombre = textBox1->Text;
         String^ apellido = textBox2->Text;
         String^ telefono = textBox3->Text;
         String^ nacionalidad = textBox4->Text;
+        // Crea una nueva conexión MySQL utilizando la cadena de conexión definida anteriormente
         MySqlConnection^ conn = gcnew MySqlConnection(connectionString);
         try {
+            // Abre la conexión a la base de datos
             conn->Open();
+            // Define una consulta SQL para insertar un nuevo pasajero en la tabla 'pasajero'
             String^ query = "INSERT INTO pasajero (nombre, apellido, telefono, nacionalidad) VALUES (@nombre, @apellido, @telefono, @nacionalidad)";
+            // Crea un comando MySQL con la consulta y la conexión
             MySqlCommand^ cmd = gcnew MySqlCommand(query, conn);
+            // Añade parámetros al comando para evitar ataques de inyección SQL
             cmd->Parameters->AddWithValue("@nombre", nombre);
             cmd->Parameters->AddWithValue("@apellido", apellido);
             cmd->Parameters->AddWithValue("@telefono", telefono);
             cmd->Parameters->AddWithValue("@nacionalidad", nacionalidad);
             cmd->ExecuteNonQuery();
+            // Muestra un mensaje indicando que el pasajero ha sido creado exitosamente
             MessageBox::Show("Pasajero Creado");
         }
         catch (Exception^ ex) {
+            // Si ocurre una excepción, muestra un mensaje con el error
             MessageBox::Show(ex->Message);
         }
         finally {
+            // Cierra la conexión a la base de datos
             conn->Close();
         }
     }
-
+           // Método privado para leer los datos de un pasajero desde la base de datos
     private: void leer_pasajero() {
+        // Crea una nueva conexión MySQL utilizando la cadena de conexión definida
         MySqlConnection^ conn = gcnew MySqlConnection(connectionString);
         try {
+            // Abre la conexión a la base de datos
             conn->Open();
+            // Define una consulta SQL para seleccionar todos los campos de un pasajero específico 
+            // por su ID
             String^ query = "SELECT * FROM pasajero WHERE id=@id";
+            // Crea un comando MySQL con la consulta y la conexión
             MySqlCommand^ cmd = gcnew MySqlCommand(query, conn);
+            // Añade el parámetro ID al comando utilizando el valor de textBoxId
             cmd->Parameters->AddWithValue("@id", textBoxId->Text);
+            // Ejecuta la consulta y obtiene un lector de datos (reader)
             MySqlDataReader^ reader = cmd->ExecuteReader();
+            // Si el lector encuentra un registro, lee los datos y los asigna a los 
+            // campos del formulario
             if (reader->Read()) {
                 textBox1->Text = reader["nombre"]->ToString();
                 textBox2->Text = reader["apellido"]->ToString();
@@ -410,60 +447,89 @@ namespace Base_de_datos_Aurora {
                 textBox4->Text = reader["nacionalidad"]->ToString();
                 MessageBox::Show("Datos cargados");
             }
+            // Si no se encuentra ningún registro, muestra un mensaje indicando que el pasajero
+            // no fue encontrado
             else {
                 MessageBox::Show("Pasajero no encontrado");
             }
         }
         catch (Exception^ ex) {
+            // Si ocurre una excepción, muestra un mensaje con el error
             MessageBox::Show(ex->Message);
         }
         finally {
+            // Cierra la conexión a la base de datos
             conn->Close();
         }
     }
-
+           // Método privado para modificar los datos de un pasajero en la base de datos
     private: void modificar_pasajero() {
+        // Recupera los valores de los campos de texto del formulario y 
+        // los almacena en variables locales
         String^ id = textBoxId->Text;
         String^ nombre = textBox1->Text;
         String^ apellido = textBox2->Text;
         String^ telefono = textBox3->Text;
         String^ nacionalidad = textBox4->Text;
+        // Crea una nueva conexión MySQL utilizando la cadena de conexión definida anteriormente
         MySqlConnection^ conn = gcnew MySqlConnection(connectionString);
         try {
+           // Abre la conexión a la base de datos
             conn->Open();
+            // Define una consulta SQL para actualizar los datos de un 
+            // pasajero específico por su ID
             String^ query = "UPDATE pasajero SET nombre=@nombre, apellido=@apellido, telefono=@telefono, nacionalidad=@nacionalidad WHERE id=@id";
+            // Crea un comando MySQL con la consulta y la conexión
             MySqlCommand^ cmd = gcnew MySqlCommand(query, conn);
+            // Añade parámetros al comando para evitar ataques de inyección SQL
             cmd->Parameters->AddWithValue("@id", id);
             cmd->Parameters->AddWithValue("@nombre", nombre);
             cmd->Parameters->AddWithValue("@apellido", apellido);
             cmd->Parameters->AddWithValue("@telefono", telefono);
             cmd->Parameters->AddWithValue("@nacionalidad", nacionalidad);
+            // Ejecuta la consulta de actualización
             cmd->ExecuteNonQuery();
+            // Muestra un mensaje indicando que el pasajero ha sido modificado exitosamente
             MessageBox::Show("Pasajero Modificado");
         }
         catch (Exception^ ex) {
+            // Si ocurre una excepción, muestra un mensaje con el error
             MessageBox::Show(ex->Message);
         }
         finally {
+            // Cierra la conexión a la base de datos
             conn->Close();
         }
     }
-
+           // Método privado para borrar un pasajero de la base de datos
     private: void borrar_pasajero() {
+        // Recupera el valor del campo de texto del formulario 
+        // y lo almacena en una variable local
         String^ id = textBoxId->Text;
+        // Crea una nueva conexión MySQL utilizando la cadena de conexión 
+        // definida anteriormente
         MySqlConnection^ conn = gcnew MySqlConnection(connectionString);
         try {
+            // Abre la conexión a la base de datos
             conn->Open();
+            // Define una consulta SQL para borrar un pasajero específico por su ID
             String^ query = "DELETE FROM pasajero WHERE id=@id";
+            // Crea un comando MySQL con la consulta y la conexión
             MySqlCommand^ cmd = gcnew MySqlCommand(query, conn);
+            // Añade el parámetro ID al comando utilizando el valor de textBoxId
             cmd->Parameters->AddWithValue("@id", id);
+            // Ejecuta la consulta de eliminación
             cmd->ExecuteNonQuery();
+            // Muestra un mensaje indicando que el pasajero ha sido 
+            // borrado exitosamente
             MessageBox::Show("Pasajero Borrado");
         }
         catch (Exception^ ex) {
+            // Si ocurre una excepción, muestra un mensaje con el error
             MessageBox::Show(ex->Message);
         }
         finally {
+            // Cierra la conexión a la base de datos
             conn->Close();
         }
     }

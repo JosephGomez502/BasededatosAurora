@@ -106,7 +106,7 @@ namespace Base_de_datos_Aurora {
                 static_cast<System::Byte>(0)));
             this->textBoxDestino->Location = System::Drawing::Point(342, 108);
             this->textBoxDestino->Name = L"textBoxDestino";
-            this->textBoxDestino->Size = System::Drawing::Size(228, 35);
+            this->textBoxDestino->Size = System::Drawing::Size(273, 35);
             this->textBoxDestino->TabIndex = 1;
             // 
             // label2
@@ -130,7 +130,7 @@ namespace Base_de_datos_Aurora {
                 System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
             this->textBoxFechaReserva->Location = System::Drawing::Point(342, 145);
             this->textBoxFechaReserva->Name = L"textBoxFechaReserva";
-            this->textBoxFechaReserva->Size = System::Drawing::Size(228, 35);
+            this->textBoxFechaReserva->Size = System::Drawing::Size(273, 35);
             this->textBoxFechaReserva->TabIndex = 3;
             // 
             // label3
@@ -154,7 +154,7 @@ namespace Base_de_datos_Aurora {
                 System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
             this->textBoxHoraAbordaje->Location = System::Drawing::Point(342, 182);
             this->textBoxHoraAbordaje->Name = L"textBoxHoraAbordaje";
-            this->textBoxHoraAbordaje->Size = System::Drawing::Size(228, 35);
+            this->textBoxHoraAbordaje->Size = System::Drawing::Size(273, 35);
             this->textBoxHoraAbordaje->TabIndex = 5;
             // 
             // label4
@@ -178,7 +178,7 @@ namespace Base_de_datos_Aurora {
                 static_cast<System::Byte>(0)));
             this->textBoxHoraLlegada->Location = System::Drawing::Point(342, 219);
             this->textBoxHoraLlegada->Name = L"textBoxHoraLlegada";
-            this->textBoxHoraLlegada->Size = System::Drawing::Size(228, 35);
+            this->textBoxHoraLlegada->Size = System::Drawing::Size(273, 35);
             this->textBoxHoraLlegada->TabIndex = 7;
             // 
             // label5
@@ -202,7 +202,7 @@ namespace Base_de_datos_Aurora {
                 static_cast<System::Byte>(0)));
             this->textBoxHoraSalida->Location = System::Drawing::Point(342, 256);
             this->textBoxHoraSalida->Name = L"textBoxHoraSalida";
-            this->textBoxHoraSalida->Size = System::Drawing::Size(228, 35);
+            this->textBoxHoraSalida->Size = System::Drawing::Size(273, 35);
             this->textBoxHoraSalida->TabIndex = 9;
             // 
             // label6
@@ -226,7 +226,7 @@ namespace Base_de_datos_Aurora {
                 System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
             this->textBoxNumeroTicket->Location = System::Drawing::Point(342, 293);
             this->textBoxNumeroTicket->Name = L"textBoxNumeroTicket";
-            this->textBoxNumeroTicket->Size = System::Drawing::Size(228, 35);
+            this->textBoxNumeroTicket->Size = System::Drawing::Size(273, 35);
             this->textBoxNumeroTicket->TabIndex = 11;
             // 
             // label7
@@ -250,7 +250,7 @@ namespace Base_de_datos_Aurora {
                 static_cast<System::Byte>(0)));
             this->textBoxAsiento->Location = System::Drawing::Point(342, 330);
             this->textBoxAsiento->Name = L"textBoxAsiento";
-            this->textBoxAsiento->Size = System::Drawing::Size(228, 39);
+            this->textBoxAsiento->Size = System::Drawing::Size(273, 39);
             this->textBoxAsiento->TabIndex = 13;
             // 
             // label8
@@ -274,7 +274,7 @@ namespace Base_de_datos_Aurora {
                 static_cast<System::Byte>(0)));
             this->textBoxClase->Location = System::Drawing::Point(342, 375);
             this->textBoxClase->Name = L"textBoxClase";
-            this->textBoxClase->Size = System::Drawing::Size(228, 35);
+            this->textBoxClase->Size = System::Drawing::Size(273, 35);
             this->textBoxClase->TabIndex = 15;
             // 
             // label9
@@ -371,7 +371,7 @@ namespace Base_de_datos_Aurora {
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
             this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(192)));
-            this->ClientSize = System::Drawing::Size(617, 479);
+            this->ClientSize = System::Drawing::Size(630, 479);
             this->Controls->Add(this->label10);
             this->Controls->Add(this->buttonLimpiar);
             this->Controls->Add(this->buttonBorrar);
