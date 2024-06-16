@@ -68,7 +68,7 @@ namespace Base_de_datos_Aurora {
            
       // Cadena de conexión para la base de datos
      // Esta cadena se utiliza para establecer la conexión con la base de datos MySQL
-           String^ connectionString = "server=127.0.0.1;user id=jose;password=123456789;database=aeropuerto_aurora;";
+           String^ connectionString = "server=127.0.0.1;user id=jose;password=123456789;database=aeropuerto_aurora;SslMode=none;";
 
 #pragma region Windows Form Designer generated code
         void InitializeComponent(void)

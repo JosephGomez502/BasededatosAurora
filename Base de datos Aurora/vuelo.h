@@ -53,7 +53,7 @@ namespace Base_de_datos_Aurora {
 
     private:
         System::ComponentModel::Container^ components;
-        String^ connectionString = "server=127.0.0.1;user id=jose;password=123456789;database=aeropuerto_aurora;";
+        String^ connectionString = "server=127.0.0.1;user id=jose;password=123456789;database=aeropuerto_aurora;SslMode=none";
 
 #pragma region Windows Form Designer generated code
         void InitializeComponent(void)
